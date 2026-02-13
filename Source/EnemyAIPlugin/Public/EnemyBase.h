@@ -19,13 +19,5 @@ protected:
 
 public:
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="AI")
-	UUtilityAIComponent* UtilityAIComponent;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AI")
-	float EvaluationInterval = 0.5f;
-
-private:
-	float TimeSinceLastEvaluation = 0.f;
+	
 };

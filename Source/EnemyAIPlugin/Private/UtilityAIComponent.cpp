@@ -1,11 +1,15 @@
 #include "UtilityAIComponent.h"
 #include "UtilityAIAction.h"
+#include "EnemyAIController.h"
 
 
 void UUtilityAIComponent::EvaluateAndExecute()
 {
-	AActor* Owner = GetOwner();
-	if (!Owner) return;
+	AEnemyAIController* Controller = Cast<AEnemyAIController>(GetOwner());
+	if (!Controller) return;
+
+	APawn* Pawn = Controller->GetPawn();
+	if (!Pawn) return;
 
 	float BestScore = -1.f;
 	UUtilityAIAction* BestAction = nullptr;
@@ -14,7 +18,7 @@ void UUtilityAIComponent::EvaluateAndExecute()
 	{
 		if (!Action) continue;
 
-		float Score = Action->Evaluate(Owner);
+		float Score = Action->Evaluate(Pawn);
 
 		if (Score > BestScore)
 		{
@@ -25,6 +29,6 @@ void UUtilityAIComponent::EvaluateAndExecute()
 
 	if (BestAction)
 	{
-		BestAction->Execute(Owner);
+		BestAction->Execute(Pawn);
 	}
 }
