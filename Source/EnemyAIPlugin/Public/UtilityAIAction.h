@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "UtilityAIConsideration.h"
 #include "UtilityAIAction.generated.h"
 
 class UUtilityAIConsideration;
@@ -16,8 +17,8 @@ public:
 	UPROPERTY(EditAnywhere, Instanced)
 	TArray<UUtilityAIConsideration*> Considerations;
 
-	UFUNCTION(BlueprintCallable)
-	virtual float Evaluate(AActor* ControlledActor);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	float Evaluate(AActor* ControlledActor);
 
 	UFUNCTION(BlueprintNativeEvent)
 	void Execute(AActor* ControlledActor);
