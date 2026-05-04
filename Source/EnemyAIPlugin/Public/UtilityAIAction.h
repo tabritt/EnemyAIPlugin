@@ -32,7 +32,7 @@ class ENEMYAIPLUGIN_API UUtilityAIAction : public UObject
 
 public:
 
-	UPROPERTY(EditAnywhere, Instanced, Category = "Considerations")
+	UPROPERTY(EditAnywhere, Category = "Considerations")
 	TArray<FWeightedConsideration> WeightedConsiderations;
 
 	// Legacy support - auto-populate WeightedConsiderations
