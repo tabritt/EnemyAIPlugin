@@ -7,6 +7,7 @@
 #include "EnemyAIController.generated.h"
 
 class UUtilityAIComponent;
+class AEnemyCharacter;
 
 UCLASS()
 class ENEMYAIPLUGIN_API AEnemyAIController : public AAIController
@@ -24,8 +25,10 @@ private:
 	UPROPERTY()
 	UUtilityAIComponent* UtilityAIComponent;
 
-	float TimeSinceLastEvaluation = 0.f;
-
 	UPROPERTY(EditAnywhere, Category="AI")
 	float EvaluationInterval = 0.5f;
+
+	FTimerHandle EvaluationTimer;
+
+	void OnEvaluationTimer();
 };

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -10,6 +8,12 @@ UCLASS (Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class ENEMYAIPLUGIN_API UNeedsComponent : public UActorComponent
 {
 	GENERATED_BODY()
+
+public:
+	UNeedsComponent();
+
+protected:
+	virtual void BeginPlay() override;
 
 public:
 
@@ -37,7 +41,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Needs")
 	float Magic = 100.f;
 
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Needs")
+	float NeedsUpdateInterval = 1.0f;
+
 	UFUNCTION(BlueprintCallable, Category="Needs")
-	void UpdateNeeds(float DeltaTime);
+	void UpdateNeeds();
+
+private:
+	FTimerHandle NeedsUpdateTimer;
+
+	void OnNeedsUpdateTimer();
 };
